@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trino-ingress
+  namespace: trino
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # Se você estiver usando SSL/TLS, adicione:
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: trino.local  # Você pode mudar para o hostname desejado
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: trino-coordinator
+            port:
+              number: 8080
