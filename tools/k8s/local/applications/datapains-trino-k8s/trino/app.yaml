@@ -19,12 +19,12 @@ spec:
       - PruneLast=true
       - RespectIgnoreDifferences=true
   sources:
-    - repoURL: https://github.com/Thelin90/datapains-trino-k8s.git
-      targetRevision: main
+    - repoURL: https://github.com/vitordarcidasilva/argocd-trino.git
+      targetRevision: master
       ref: datapains-trino-k8s
     - repoURL: https://trinodb.github.io/charts/
       targetRevision: 0.21.0
       chart: trino
       helm:
         valueFiles:
-          - $datapains-trino-k8s/tools/k8s/helm/trino/local/values.yaml
+          - $argocd-trino/tools/k8s/helm/trino/local/values.yaml
